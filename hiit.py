@@ -1,4 +1,8 @@
 import pygame
+import os
+import sys
+
+CWDPATH = os.path.abspath(os.path.dirname(sys.argv[0]))
 
 WIDTH = 1280
 HEIGHT = 960
@@ -35,11 +39,12 @@ def get_bg_color(is_rest):
 
 
 pygame.init()
-bell_sound = pygame.mixer.Sound('sound/bell.wav')
-applause_sound = pygame.mixer.Sound('sound/applause.wav')
+bell_sound = pygame.mixer.Sound(os.path.join(CWDPATH, 'sound', 'bell.wav'))
+applause_sound = pygame.mixer.Sound(
+    os.path.join(CWDPATH, 'sound', 'applause.wav'))
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-screen.fill('gray')
+pygame.display.set_caption("HIIT Workout Timer")
 
 clock = pygame.time.Clock()
 pygame.time.set_timer(TIMER_EVT, 1000)
@@ -133,5 +138,4 @@ while running:
 
     clock.tick(60)
 
-pygame.mixer.quit()
 pygame.quit()
